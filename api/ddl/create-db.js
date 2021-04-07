@@ -69,16 +69,9 @@ exports.up = function(knex, Promise){
             })
         ]))
         .then(() => Promise.all([
-            knex.schema.createTable('ride', table => {
-                table.increments();
-                table.date('date');
-                table.time('time');
-                table.float('distance');
-                table.float('fuelPrice');
-                table.float('fee');
-                table.integer('vehicleId').references('vehicle.id');
-                table.integer('fromLocationId').references('location.id');
-                table.integer('toLocationId').references('location.id');
+            knex.schema.createTable('passenger', table => {
+                table.integer('userID').references('user.id');
+                table.integer('rideID').references('ride.id');
             }),
             knex.schema.createTable('drivers', table => {
                 table.integer('driverId').references('driver.id').primary();
