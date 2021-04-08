@@ -7,7 +7,7 @@ class User extends Model {
         return 'user';
     }
     static get relationMappings() {
-        const Ride = require('./ride');
+        const Ride = require('./Ride');
         return {
             relation: Model.ManyToManyRelation,
             modelClass: Ride,

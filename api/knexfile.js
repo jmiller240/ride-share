@@ -3,9 +3,12 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
+      filename: './ddl/initial-data.js'
+    },
+    migrations: {
+      tableName: './ddl/create-db.js'
     }
   },
 

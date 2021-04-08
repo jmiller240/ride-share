@@ -6,6 +6,7 @@ const knex = require('knex')({
     }
 });
 
+const knex = require('knex');
 const objection = require('objection');
 const Model = objection.Model;
 
