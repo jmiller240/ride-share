@@ -1,13 +1,7 @@
-const knex = require('knex')({ 
-    client: 'pg',
-    connection: {
-        host: 'localhost',
-        database: 'dvdrental'
-    }
-});
-
+const knex = require('knex');
 const objection = require('objection');
 const Model = objection.Model;
+Model.knex(knex);
 
 class Driver extends Model {
     static get tableName() {
