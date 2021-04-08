@@ -1,6 +1,7 @@
 const knex = require('knex');
 const objection = require('objection');
 const Model = objection.Model;
+Model.knex(knex);
 
 class User extends Model {
     static get tableName() {
