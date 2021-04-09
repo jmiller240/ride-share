@@ -1,0 +1,11 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.95.4",
+    "objection": "^2.2.15",
+    "pg": "^8.5.1"
+  }
+}
