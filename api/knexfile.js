@@ -5,10 +5,10 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      filename: './ddl/initial-data.js'
-    },
-    migrations: {
-      tableName: './ddl/create-db.js'
+      host: 'faraday.cse.taylor.edu',
+      user: 'jackson_miller',
+      password: 'xopijuti',
+      database: 'jackson_miller'
     }
   },
 

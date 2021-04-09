@@ -1,12 +1,15 @@
-const knex = require('knex');
-const objection = require('objection');
+const knex = require('../knexfile.js');
+
+objection = require('objection');
 const Model = objection.Model;
 Model.knex(knex);
 
 class User extends Model {
+
     static get tableName() {
         return 'user';
     }
+    
     static get relationMappings() {
         const Ride = require('./Ride');
         return {
@@ -23,3 +26,5 @@ class User extends Model {
         }
     }
 }
+
+module.exports = User;

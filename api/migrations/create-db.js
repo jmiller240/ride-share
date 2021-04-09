@@ -1,5 +1,10 @@
+/*const knex = require('knex');
 
-exports.up = function(knex, Promise){
+objection = require('objection');
+const Model = objection.Model;
+Model.knex(knex);
+*/
+exports.up = function(knex){
     return knex.schema
         .createTable('user', table => {
             table.increments();
@@ -27,6 +32,7 @@ exports.up = function(knex, Promise){
                 table.string('address');
                 table.string('city');
                 table.string('state').references('state.abbreviation');
+                table.string('zipCode');
             }), 
             knex.schema.createTable('driver', table => {
                 table.increments();
@@ -69,13 +75,27 @@ exports.up = function(knex, Promise){
                 table.integer('rideID').references('ride.id');
             }),
             knex.schema.createTable('drivers', table => {
-                table.integer('driverId').references('driver.id').primary();
-                table.integer('rideId').references('ride.id').primary();
+                table.integer('driverId').references('driver.id');
+                table.integer('rideId').references('ride.id');
             })
         ]))
         .catch(err => console.log(`ERROR: ${err}`));
 }
 
 exports.down = function(knex) {
-  
+    return Promise.all([
+        knex.schema.dropTable('drivers'),
+        knex.schema.dropTable('passenger')
+    ]).then(() => Promise.all([
+        knex.schema.dropTable('ride'),
+        knex.schema.dropTable('authorization')
+    ])).then(() => Promise.all([
+        knex.schema.dropTable('vehicle'),
+        knex.schema.dropTable('driver'),
+        knex.schema.dropTable('location'),
+    ])).then(() => Promise.all([
+        knex.schema.dropTable('state'),
+        knex.schema.dropTable('vehicleType'),
+        knex.schema.dropTable('user')
+    ])).catch(error => console.log(`ERROR: ${error}`));
 };
