@@ -1,12 +1,10 @@
-const knex = require('knex');
-const objection = require('objection');
-const Model = objection.Model;
-Model.knex(knex);
+const { Model } = require("objection");
 
 class Ride extends Model {
     static get tableName() {
         return 'ride';
     }
+
     static get relationMappings() {
         return {
             vehicle: {
@@ -61,3 +59,5 @@ class Ride extends Model {
         }
     }
 }
+
+module.exports = Ride;

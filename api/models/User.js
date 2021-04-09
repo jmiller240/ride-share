@@ -1,28 +1,25 @@
-const knex = require('../knexfile.js');
-
-objection = require('objection');
-const Model = objection.Model;
-Model.knex(knex);
+const { Model } = require('objection');
 
 class User extends Model {
-
     static get tableName() {
         return 'user';
     }
-    
+
     static get relationMappings() {
         const Ride = require('./Ride');
         return {
-            relation: Model.ManyToManyRelation,
-            modelClass: Ride,
-            join: {
-                from: 'user.id',
-                through: {
-                    from: 'passenger.userId',
-                    to: 'passenger.rideId'
-                },
-                to: 'ride.id'
-            }
+            rides: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Ride,
+                join: {
+                    from: 'user.id',
+                    through: {
+                        from: 'passenger.userId',
+                        to: 'passenger.rideId'
+                    },
+                    to: 'ride.id'
+                }
+            },
         }
     }
 }
