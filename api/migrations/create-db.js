@@ -23,6 +23,7 @@ exports.up = function(knex){
             knex.schema.createTable('state', table => {
                 table.string('abbreviation').primary();
                 table.string('name');
+                table.integer('id');
             })
         ]))
         .then(() => Promise.all([
@@ -36,7 +37,7 @@ exports.up = function(knex){
             }), 
             knex.schema.createTable('driver', table => {
                 table.increments();
-                table.integer('userId').references('user.id');
+                table.integer('userID').references('user.id');
                 table.string('licenseNumber');
                 table.string('licenseState').references('state.abbreviation');
             }),
@@ -45,7 +46,7 @@ exports.up = function(knex){
                 table.string('make');
                 table.string('model');
                 table.string('color');
-                table.integer('vehicleTypeId').references('vehicleType.id');
+                table.integer('vehicleTypeID').references('vehicleType.id');
                 table.integer('capacity');
                 table.float('mpg');
                 table.string('licenseState').references('state.abbreviation');
@@ -75,8 +76,8 @@ exports.up = function(knex){
                 table.integer('rideID').references('ride.id');
             }),
             knex.schema.createTable('drivers', table => {
-                table.integer('driverId').references('driver.id');
-                table.integer('rideId').references('ride.id');
+                table.integer('driverID').references('driver.id');
+                table.integer('rideID').references('ride.id');
             })
         ]))
         .catch(err => console.log(`ERROR: ${err}`));

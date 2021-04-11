@@ -1,7 +1,5 @@
-const knex = require('knex');
-const objection = require('objection');
-const Model = objection.Model;
-Model.knex(knex);
+const { Model } = require('objection');
+const State = require('./State');
 
 class Location extends Model {
     static get tableName() {
@@ -9,7 +7,7 @@ class Location extends Model {
     }
     static get relationMappings() {
         return {
-            state: {
+            st: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: State,
                 join: {
@@ -20,3 +18,5 @@ class Location extends Model {
         }
     }
 }
+
+module.exports = Location;

@@ -1,22 +1,21 @@
-const knex = require('knex');
-const objection = require('objection');
-const Model = objection.Model;
-Model.knex(knex);
+const { Model } = require('objection');
+const Vehicle = require('./Vehicle');
+const Ride = require('./Ride');
+const User = require('./User');
+const State = require('./State');
 
 class Driver extends Model {
     static get tableName() {
         return 'driver';
     }
     static get relationMappings() {
-        const Vehicle = require('./Vehicle');
-        const Ride = require('./Ride');
         return {
             user: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: User,
                 join: {
-                    from: 'driver.userId',
-                    to: 'user.userId'
+                    from: 'driver.userID',
+                    to: 'user.userID'
                 }
             },
             state: {
@@ -33,8 +32,8 @@ class Driver extends Model {
                 join: {
                     from: 'driver.id',
                     through: {
-                        from: 'authorization.driverId',
-                        to: 'authorization.vehicleId',
+                        from: 'authorization.driverID',
+                        to: 'authorization.vehicleID',
                     },
                     to: 'vehicle.id'
                 }
@@ -45,8 +44,8 @@ class Driver extends Model {
                 join: {
                     from: 'driver.id',
                     through: {
-                        from: 'drivers.driverId',
-                        to: 'drivers.rideId',
+                        from: 'drivers.driverID',
+                        to: 'drivers.rideID',
                     },
                     to: 'ride.id'
                 }
@@ -54,3 +53,5 @@ class Driver extends Model {
         };
     }
 }
+
+module.exports = Driver;

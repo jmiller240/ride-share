@@ -9,7 +9,7 @@ module.exports = {
       user: 'jackson_miller',
       password: 'xopijuti',
       database: 'jackson_miller'
-    }
+    },
   },
 
   staging: {

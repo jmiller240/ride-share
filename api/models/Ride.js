@@ -1,4 +1,8 @@
 const { Model } = require("objection");
+const User = require("./User");
+const Vehicle = require("./Vehicle");
+const Location = require('./Location');
+const Driver = require('./Driver');
 
 class Ride extends Model {
     static get tableName() {
@@ -11,7 +15,7 @@ class Ride extends Model {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Vehicle,
                 join: {
-                    from: 'ride.vehicleId',
+                    from: 'ride.vehicleID',
                     to: 'vehicle.id'
                 } 
             },
@@ -20,7 +24,7 @@ class Ride extends Model {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Location,
                 join: {
-                    from: 'ride.fromLocationId',
+                    from: 'ride.fromLocationID',
                     to: 'location.id'
                 }
             },
@@ -28,7 +32,7 @@ class Ride extends Model {
                 relation: Model.BelongsToOneRelation,
                 modelClass: Location,
                 join: {
-                    from: 'ride.toLocationId',
+                    from: 'ride.toLocationID',
                     to: 'location.id'
                 }
             },
@@ -38,8 +42,8 @@ class Ride extends Model {
                 join: {
                     from: 'ride.id',
                     through: {
-                        from: 'passenger.rideId',
-                        to: 'passenger.userId',
+                        from: 'passenger.rideID',
+                        to: 'passenger.userID',
                     },
                     to: 'user.id'
                 }
@@ -50,8 +54,8 @@ class Ride extends Model {
                 join: {
                     from: 'ride.id',
                     through: {
-                        from: 'drivers.rideId',
-                        to: 'drivers.driverId',
+                        from: 'drivers.rideID',
+                        to: 'drivers.driverID',
                     },
                     to: 'driver.id'
                 }

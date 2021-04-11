@@ -1,7 +1,8 @@
-const knex = require('knex');
-const objection = require('objection');
-const Model = objection.Model;
-Model.knex(knex);
+const { Model } = require('objection');
+const VehicleType = require('./VehicleType');
+const State = require('./State');
+const Driver = require('./Driver');
+
 
 class Vehicle extends Model {
     static get tableName() {
@@ -13,11 +14,11 @@ class Vehicle extends Model {
                 relation: Model.BelongsToOneRelation,
                 modelClass: VehicleType,
                 join: {
-                    from: 'vehicle.vehicleTypeId',
+                    from: 'vehicle.vehicleTypeID',
                     to: 'vehicleType.id'
                 }
             },
-            state: {
+            licenseSt: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: State,
                 join: {
@@ -31,8 +32,8 @@ class Vehicle extends Model {
                 join: {
                     from: 'vehicle.id',
                     through: {
-                        from: 'authorizaion.vehicleId',
-                        to: 'authorization.driverId'
+                        from: 'authorization.vehicleID',
+                        to: 'authorization.driverID'
                     },
                     to: 'driver.id'
                 }
@@ -40,3 +41,5 @@ class Vehicle extends Model {
         }
     }
 }
+
+module.exports = Vehicle;

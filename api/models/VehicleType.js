@@ -1,10 +1,9 @@
-const knex = require('knex');
-const objection = require('objection');
-const Model = objection.Model;
-Model.knex(knex);
+const { Model } = require('objection');
 
 class VehicleType extends Model {
-    static get tabelName() {
+    static get tableName() {
         return 'vehicleType';
     }
 }
+
+module.exports = VehicleType;
