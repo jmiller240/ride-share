@@ -1,5 +1,6 @@
 const { Model } = require('objection');
 const Ride = require('./Ride');
+const Driver = require('./Driver');
 
 
 class User extends Model {
@@ -21,6 +22,14 @@ class User extends Model {
                     to: 'ride.id'
                 }
             },
+            driver: {
+                relation: Model.HasManyRelation,
+                modelClass: Driver,
+                join: {
+                    from: 'user.id',
+                    to: 'driver.userID'
+                }
+            }
         }
     }
 }

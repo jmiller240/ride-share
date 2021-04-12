@@ -1,6 +1,5 @@
 const { Model } = require('objection');
 const Vehicle = require('./Vehicle');
-const Ride = require('./Ride');
 const User = require('./User');
 const State = require('./State');
 
@@ -9,6 +8,7 @@ class Driver extends Model {
         return 'driver';
     }
     static get relationMappings() {
+        const Ride = require('./Ride');
         return {
             user: {
                 relation: Model.BelongsToOneRelation,
@@ -18,7 +18,7 @@ class Driver extends Model {
                     to: 'user.userID'
                 }
             },
-            state: {
+            licenseSt: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: State,
                 join: {

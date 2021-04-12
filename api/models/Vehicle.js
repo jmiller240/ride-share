@@ -1,7 +1,6 @@
 const { Model } = require('objection');
 const VehicleType = require('./VehicleType');
 const State = require('./State');
-const Driver = require('./Driver');
 
 
 class Vehicle extends Model {
@@ -9,6 +8,7 @@ class Vehicle extends Model {
         return 'vehicle';
     }
     static get relationMappings() {
+        const Driver = require('./Driver');
         return {
             vehicleType: {
                 relation: Model.BelongsToOneRelation,
