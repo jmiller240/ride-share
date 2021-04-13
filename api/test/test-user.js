@@ -1,11 +1,14 @@
 const { Model } = require('objection');
-const User = require('../models/User');
-const knex = require('../knexfile');
-Model.knex(knex.development);
+const User = require('../models/User.js');
+const knex = require('../knexfile.js');
 
 async function create() {
+    Model.knex(knex);
 
-    const newUser = await User.query().insert(
+    const newUser = await User.query().select('id', 'firstName');
+    
+    
+    /*.insert(
         {
             firstName: 'Pat',
             lastName: 'Rick',
@@ -14,8 +17,8 @@ async function create() {
             phone: '209-456-3201',
             isAdmin: false,
         }
-    )
-    console.log('CREATE\n', newUser)
+    )*/
+    console.log('CREATE\n', newUser);
 }
 
 async function read() {
@@ -36,10 +39,15 @@ async function deleteTest() {
 
 async function main() {
     create();
-    read();
+    /*read();
     update();
     deleteTest();
-
+    */
 }
+
+process.on('unhandledRejection', err => {
+    console.error(err);
+    process.exit(1);
+});
 
 main();
