@@ -1,7 +1,4 @@
-const knexConfig = require("../knexfile.js");
-const knex = require("knex")(knexConfig.development);
-const { Model } = require("objection");
-Model.knex(knex);
+require("./init");
 
 const User = require("../models/User.js");
 
