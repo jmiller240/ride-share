@@ -1,6 +1,5 @@
 const { Model } = require('objection');
 const Vehicle = require('./Vehicle');
-const User = require('./User');
 const State = require('./State');
 
 class Driver extends Model {
@@ -8,6 +7,7 @@ class Driver extends Model {
         return 'driver';
     }
     static get relationMappings() {
+        const User = require('./User');
         const Ride = require('./Ride');
         return {
             user: {

@@ -27,7 +27,10 @@ async function read(id) {
 async function update() {}
 
 async function deleteTest(id) {
-  const user = await User.query().del().where('id', 10);
+  await User.relatedQuery('driver').for(id).unrelate();
+  await User.relatedQuery('ride').for(id).unrelate();
+
+  let user = await User.query().deleteById(id).returning('*');
 
   console.log('DELETE\n', user);
 }
@@ -35,8 +38,8 @@ async function deleteTest(id) {
 async function main() {
   //await create();
   //await read(8);
-  await update();
-  //await deleteTest();
+  //await update();
+  await deleteTest(9);
   
    knex.destroy();
 }
