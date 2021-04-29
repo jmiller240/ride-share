@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "seed": "knex seed:run"
+    "ui-watch": "vue-cli-service serve",
+    "api-watch": "nodemon --ignore ./node_modules hapi-server.js"
   },
   "dependencies": {
     "@hapi/hapi": "^20.1.2",
@@ -21,5 +22,45 @@
     "vue-router": "^3.5.1",
     "vuetify": "^2.4.11",
     "vuex": "^3.6.2"
-  }
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.3.1",
+    "@vue/cli-plugin-eslint": "^4.3.1",
+    "@vue/cli-service": "^4.3.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "nodemon": "^2.0.3",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-vuetify": "^2.0.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.4.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true,
+      "browser": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-console": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
