@@ -7,8 +7,19 @@
     "seed": "knex seed:run"
   },
   "dependencies": {
+    "@hapi/hapi": "^20.1.2",
+    "@hapi/joi": "^17.1.1",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "blipp": "^4.0.2",
+    "core-js": "^3.11.1",
+    "hapi-pino": "^8.3.0",
     "knex": "^0.95.4",
     "objection": "^2.2.15",
-    "pg": "^8.5.1"
+    "pg": "^8.5.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1",
+    "vuetify": "^2.4.11",
+    "vuex": "^3.6.2"
   }
 }
