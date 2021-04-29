@@ -6,6 +6,7 @@ class Location extends Model {
         return 'location';
     }
     static get relationMappings() {
+        const Ride = require('./Ride');
         return {
             st: {
                 relation: Model.BelongsToOneRelation,
@@ -14,7 +15,23 @@ class Location extends Model {
                     from: 'location.state',
                     to: 'state.abbreviation'
                 }
-            }
+            },
+            incomingRide: {
+                relation: Model.HasManyRelation,
+                modelClass: Ride,
+                join: {
+                    from: 'location.id',
+                    to: 'ride.toLocationID'
+                }
+            },
+            outgoingRide: {
+                relation: Model.HasManyRelation,
+                modelClass: Ride,
+                join: {
+                    from: 'location.id',
+                    to: 'ride.fromLocationID'
+                }
+            },
         }
     }
 }

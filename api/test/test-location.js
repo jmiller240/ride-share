@@ -1,7 +1,7 @@
 const { knex } = require("./init");
 
 //const { default: knex } = require("knex");
-const User = require("../models/User.js");
+const Location = require("../models/Location.js");
 
 async function create() {
   const newUser = await User.query().insert(
@@ -35,8 +35,12 @@ async function deleteTest(id) {
 async function main() {
   //await create();
   //await read(8);
-  await update();
+  //await update();
   //await deleteTest();
+
+  const rides = await Location.query().withGraphFetched('incomingRide').where('name', 'The Bullpen');
+  console.log(rides);
+
   
    knex.destroy();
 }

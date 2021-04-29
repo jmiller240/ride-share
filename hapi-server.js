@@ -58,7 +58,7 @@ const knex = require("knex")({
                 },
             },
             handler: async (request, h) => {
-                const rides = Ride.
+                const rides = await Location.query().withGraphFetched('incomingRide').where('name', request.payload);
             }
         }
     ]);

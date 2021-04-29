@@ -39,7 +39,10 @@ async function main() {
   //await create();
   //await read(8);
   //await update();
-  await deleteTest(9);
+  //await deleteTest(9);
+
+  const drivers = await User.query().withGraphFetched('driver');
+  console.log(drivers);
   
    knex.destroy();
 }
